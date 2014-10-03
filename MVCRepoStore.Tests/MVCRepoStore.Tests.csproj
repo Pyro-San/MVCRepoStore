@@ -83,8 +83,10 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="TestCatalogRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -93,6 +95,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVCRepoStore.Data\MVCRepoStore.Data.csproj">
+      <Project>{0c79de8c-ff97-4ccb-a628-44ce357f82dd}</Project>
+      <Name>MVCRepoStore.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCRepoStore.Repository\MVCRepoStore.Repository.csproj">
+      <Project>{c4b32f15-78c2-4c9f-8c25-51bde5be8f59}</Project>
+      <Name>MVCRepoStore.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCRepoStore.Service\MVCRepoStore.Service.csproj">
+      <Project>{b6cb7b99-487f-49b0-8f3f-b4dfdf402a87}</Project>
+      <Name>MVCRepoStore.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVCRepoStore.Web\MVCRepoStore.Web.csproj">
       <Project>{ACCEC0E8-776F-4A0C-B6FA-B906B37653E2}</Project>
       <Name>MVCRepoStore.Web</Name>

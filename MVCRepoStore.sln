@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCRepoStore.Web", "MVCRepoStore.Web\MVCRepoStore.Web.csproj", "{ACCEC0E8-776F-4A0C-B6FA-B906B37653E2}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCRepoStore.Data", "MVCRepoStore.Data\MVCRepoStore.Data.csproj", "{0C79DE8C-FF97-4CCB-A628-44CE357F82DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCRepoStore.Repository", "MVCRepoStore.Repository\MVCRepoStore.Repository.csproj", "{C4B32F15-78C2-4C9F-8C25-51BDE5BE8F59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCRepoStore.Service", "MVCRepoStore.Service\MVCRepoStore.Service.csproj", "{B6CB7B99-487F-49B0-8F3F-B4DFDF402A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C4B32F15-78C2-4C9F-8C25-51BDE5BE8F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4B32F15-78C2-4C9F-8C25-51BDE5BE8F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4B32F15-78C2-4C9F-8C25-51BDE5BE8F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CB7B99-487F-49B0-8F3F-B4DFDF402A87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CB7B99-487F-49B0-8F3F-B4DFDF402A87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CB7B99-487F-49B0-8F3F-B4DFDF402A87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CB7B99-487F-49B0-8F3F-B4DFDF402A87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

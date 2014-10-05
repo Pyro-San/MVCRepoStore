@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MVCRepoStore.Data;
 using MVCRepoStore.Repository;
+using MVCRepoStore.Repository.Filters;
 
 namespace MVCRepoStore.Service
 {
@@ -31,6 +32,16 @@ namespace MVCRepoStore.Service
                    select subs).ToList();
            });
            return parents;
+       }
+
+       public IList<Product> GetProductsByCategory(int categoryId)
+       {
+           return _catalogRepository.GetProducts().WithCategory(categoryId).ToList();
+       }
+
+       public Product GetProductById(int id)
+       {
+           return _catalogRepository.GetProducts().WithId(id).First();
        }
     }
 }

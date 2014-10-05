@@ -20,23 +20,23 @@ namespace MVCRepoStore.Tests
                 }
                 result.Add(c);
             }
-            return result.AsQueryable<Category>();
+            return result.AsQueryable();
         }
 
         public IQueryable<Product> GetProducts()
         {
             IList<Product> result = new List<Product>();
             // loop got each category
-            int loopIndex = 0;
-            int uniqueProductId = 1;
+            var loopIndex = 0;
+            var uniqueProductId = 1;
 
             var categories = GetCategories().Where(x => x.ParentId > 0).ToList();
 
             foreach (var c in categories)
             {
-                for (int y = 1; y <= 5; y++)
+                for (var y = 1; y <= 5; y++)
                 {
-                    var p = new Product()
+                    var p = new Product
                     {
                         Name = "Product" + loopIndex,
                         Id = uniqueProductId,
@@ -49,7 +49,7 @@ namespace MVCRepoStore.Tests
                 }
                 loopIndex++;
             }
-            return result.AsQueryable<Product>();
+            return result.AsQueryable();
         }
     }
 }

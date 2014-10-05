@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MVCRepoStore.Data;
 using MVCRepoStore.Repository;
+using MVCRepoStore.Repository.Filters;
 using MVCRepoStore.Service;
 
 namespace MVCRepoStore.Tests
@@ -90,12 +91,11 @@ namespace MVCRepoStore.Tests
             ICatalogRepository rep = new TestCatalogRepository();
             var categories = rep.GetCategories().Where(c => c.ParentId != 0).ToList();
             var products = rep.GetProducts().ToList();
-            foreach (var c in categories)
+            foreach (
+                var productCount in
+                    categories.Select(c => (from p in products where p.CategoryId == c.Id select p).Count()))
             {
-                int productCount = (from p in products
-                                    where p.CategoryId == c.Id
-                                    select p).Count();
-                Assert.AreEqual(5,productCount);
+                Assert.AreEqual(5, productCount);
             }
             Assert.IsNotNull(rep.GetProducts());
         }
@@ -108,6 +108,41 @@ namespace MVCRepoStore.Tests
                 .WithCategory(11)
                 .ToList();
             Assert.IsNotNull(products);
+        }
+
+        [TestMethod]
+        public void Repository_ProductFilter_Returns_5_Products_With_Category_11()
+        {
+            ICatalogRepository rep = new TestCatalogRepository();
+            IList<Product> products = rep.GetProducts()
+                .WithCategory(11).ToList();
+
+            Assert.AreEqual(5, products.Count);
+
+        }
+
+        [TestMethod]
+        public void CatalogServie_Returns_5_Products_With_Category_11()
+        {
+            IList<Product> products = _catalogService.GetProductsByCategory(11);
+            Assert.AreEqual(5, products.Count);
+        }
+
+        [TestMethod]
+        public void Repository_Returns_Single_Product_when_Filtered_ById_1()
+        {
+            ICatalogRepository rep = new TestCatalogRepository();
+            IList<Product> products = rep.GetProducts()
+                .WithId(1).ToList();
+
+            Assert.AreEqual(1, products.Count);
+        }
+
+        [TestMethod]
+        public void CatalogService_Returns_Singel_Product_With_ProductId_1()
+        {
+            Product p = _catalogService.GetProductById(1);
+            Assert.IsNotNull(p);
         }
         #endregion
 

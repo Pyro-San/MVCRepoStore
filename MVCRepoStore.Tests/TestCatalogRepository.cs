@@ -51,5 +51,15 @@ namespace MVCRepoStore.Tests
             }
             return result.AsQueryable();
         }
+
+        public IQueryable<ProductReview> GetReviews()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IQueryable<ProductDesctiption> GetDesctiptions()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

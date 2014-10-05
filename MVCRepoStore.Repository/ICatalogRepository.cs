@@ -7,5 +7,7 @@ namespace MVCRepoStore.Repository
     {
         IQueryable<Category> GetCategories();
         IQueryable<Product> GetProducts();
+        IQueryable<ProductReview> GetReviews();
+        IQueryable<ProductDesctiption> GetDesctiptions();
     }
 }

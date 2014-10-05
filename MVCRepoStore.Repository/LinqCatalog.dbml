@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database EntityNamespace="MVCRepoStore.SqlRepository.Data" ContextNamespace="MVCRepoStore.SqlRepository" Class="DB" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=C:\Users\James\Projects\MVCRepoStore\MVCRepoStore.Web\App_Data\aspnet-MVCRepoStore-20141002064334.mdf;Initial Catalog=aspnet-MVCRepoStore-20141002064334;Integrated Security=True" SettingsObjectName="MVCRepoStore.Repository.Properties.Settings" SettingsPropertyName="aspnet_MVCRepoStore_20141002064334ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Products">
+    <Type Name="Product">
+      <Column Name="ProductId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" CanBeNull="false" />
+      <Column Name="DiscountPercent" Type="System.Decimal" CanBeNull="false" />
+      <Association Name="Product_ProductDescription" Member="ProductDescriptions" ThisKey="ProductId" OtherKey="ProductId" Type="ProductDescription" />
+      <Association Name="Product_ProductReview" Member="ProductReviews" ThisKey="ProductId" OtherKey="ProductId" Type="ProductReview" />
+      <Association Name="Category_Product" Member="Category" ThisKey="CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Categories">
+    <Type Name="Category">
+      <Column Name="CategoryId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Member="CategoryName" Type="System.String" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" CanBeNull="true" />
+      <Association Name="Category_Product" Member="Products" ThisKey="CategoryId" OtherKey="CategoryId" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ProductDescriptions">
+    <Type Name="ProductDescription">
+      <Column Name="ProductDescriptionId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="CultureId" Type="System.String" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Association Name="Product_ProductDescription" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="" Member="ProductReviews">
+    <Type Name="ProductReview">
+      <Column Name="ProductReviewId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" CanBeNull="false" />
+      <Column Name="Author" Type="System.String" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" CanBeNull="false" />
+      <Column Name="Body" Type="System.String" CanBeNull="false" />
+      <Association Name="Product_ProductReview" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

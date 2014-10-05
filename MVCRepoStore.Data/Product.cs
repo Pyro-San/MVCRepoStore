@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MVCRepoStore.Data
 {
@@ -14,9 +15,12 @@ namespace MVCRepoStore.Data
         public decimal DiscountPercent { get; set; }
         public int CategoryId { get; set; }
 
+        public List<ProductReview> Reviews { get; set; } 
+
         public Product()
         {
         }
+
 
         public Product(string name, string description, int categoryId, decimal listPrice, decimal discountPercent)
         {

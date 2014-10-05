@@ -10,7 +10,7 @@ namespace MVCRepoStore.Repository
         {
             var ctx = new DB();
             return from c in ctx.Categories
-                   select new MVCRepoStore.Data.Category
+                   select new Category
                 {
                     Id = c.CategoryId,
                     Name = c.CategoryName,

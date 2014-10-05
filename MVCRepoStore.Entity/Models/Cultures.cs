@@ -8,6 +8,6 @@ namespace MVCRepoStore.Entity.Models
         public int CultureId { get; set; }
         public string LanguageCode { get; set; }
         public string Locale { get; set; }
-        public string CurrencyCode { get; set; }
+        public string DefaultCurrencyCode { get; set; }
     }
 }

@@ -6,8 +6,9 @@ namespace MVCRepoStore.Entity.Models
     {
         [Key]
         public int ProductDescriptionId { get; set; }
-        public int CultureId { get; set; }
-        public int ProductId { get; set; }
         public string Description { get; set; }
+
+        public virtual Cultures Culture { get; set; }
+        public virtual Products Product { get; set; }
     }
 }

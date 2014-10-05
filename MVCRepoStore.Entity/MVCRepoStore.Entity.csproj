@@ -50,12 +50,22 @@
     <Compile Include="Migrations\201410050324515_InitialCreate.Designer.cs">
       <DependentUpon>201410050324515_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201410050624225_ReDesignDatabase.cs" />
+    <Compile Include="Migrations\201410050624225_ReDesignDatabase.Designer.cs">
+      <DependentUpon>201410050624225_ReDesignDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\Categories_Images.cs" />
+    <Compile Include="Models\Categories_Products.cs" />
+    <Compile Include="Models\CategoryCultureDetail.cs" />
     <Compile Include="Models\Cultures.cs" />
+    <Compile Include="Models\Images.cs" />
+    <Compile Include="Models\ProductCultureDetail.cs" />
     <Compile Include="Models\ProductDescriptions.cs" />
     <Compile Include="Models\ProductReviews.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\Products_Images.cs" />
     <Compile Include="MVCRepoStoreDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201410050324515_InitialCreate.resx">
       <DependentUpon>201410050324515_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410050624225_ReDesignDatabase.resx">
+      <DependentUpon>201410050624225_ReDesignDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,6 +11,7 @@ namespace MVCRepoStore.Entity.Models
         public string Body { get; set; }
         public DateTime CreatedOn { get; set; }
         public string Email { get; set; }
-        public string ProductId { get; set; }
+
+        public virtual Products Product { get; set; }
     }
 }

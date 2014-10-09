@@ -20,6 +20,7 @@ namespace MVCRepoStore.SqlRepository
 	using System.Linq.Expressions;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="aspnet-MVCRepoStore-20141002064334")]
 	internal partial class DB : System.Data.Linq.DataContext
 	{
 		
@@ -27,18 +28,39 @@ namespace MVCRepoStore.SqlRepository
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertProduct(MVCRepoStore.SqlRepository.Data.Product instance);
-    partial void UpdateProduct(MVCRepoStore.SqlRepository.Data.Product instance);
-    partial void DeleteProduct(MVCRepoStore.SqlRepository.Data.Product instance);
     partial void InsertCategory(MVCRepoStore.SqlRepository.Data.Category instance);
     partial void UpdateCategory(MVCRepoStore.SqlRepository.Data.Category instance);
     partial void DeleteCategory(MVCRepoStore.SqlRepository.Data.Category instance);
+    partial void InsertCategories_Image(MVCRepoStore.SqlRepository.Data.Categories_Image instance);
+    partial void UpdateCategories_Image(MVCRepoStore.SqlRepository.Data.Categories_Image instance);
+    partial void DeleteCategories_Image(MVCRepoStore.SqlRepository.Data.Categories_Image instance);
+    partial void InsertCategories_Product(MVCRepoStore.SqlRepository.Data.Categories_Product instance);
+    partial void UpdateCategories_Product(MVCRepoStore.SqlRepository.Data.Categories_Product instance);
+    partial void DeleteCategories_Product(MVCRepoStore.SqlRepository.Data.Categories_Product instance);
+    partial void InsertCategoryCultureDetail(MVCRepoStore.SqlRepository.Data.CategoryCultureDetail instance);
+    partial void UpdateCategoryCultureDetail(MVCRepoStore.SqlRepository.Data.CategoryCultureDetail instance);
+    partial void DeleteCategoryCultureDetail(MVCRepoStore.SqlRepository.Data.CategoryCultureDetail instance);
+    partial void InsertCulture(MVCRepoStore.SqlRepository.Data.Culture instance);
+    partial void UpdateCulture(MVCRepoStore.SqlRepository.Data.Culture instance);
+    partial void DeleteCulture(MVCRepoStore.SqlRepository.Data.Culture instance);
+    partial void InsertImage(MVCRepoStore.SqlRepository.Data.Image instance);
+    partial void UpdateImage(MVCRepoStore.SqlRepository.Data.Image instance);
+    partial void DeleteImage(MVCRepoStore.SqlRepository.Data.Image instance);
+    partial void InsertProductCultureDetail(MVCRepoStore.SqlRepository.Data.ProductCultureDetail instance);
+    partial void UpdateProductCultureDetail(MVCRepoStore.SqlRepository.Data.ProductCultureDetail instance);
+    partial void DeleteProductCultureDetail(MVCRepoStore.SqlRepository.Data.ProductCultureDetail instance);
     partial void InsertProductDescription(MVCRepoStore.SqlRepository.Data.ProductDescription instance);
     partial void UpdateProductDescription(MVCRepoStore.SqlRepository.Data.ProductDescription instance);
     partial void DeleteProductDescription(MVCRepoStore.SqlRepository.Data.ProductDescription instance);
     partial void InsertProductReview(MVCRepoStore.SqlRepository.Data.ProductReview instance);
     partial void UpdateProductReview(MVCRepoStore.SqlRepository.Data.ProductReview instance);
     partial void DeleteProductReview(MVCRepoStore.SqlRepository.Data.ProductReview instance);
+    partial void InsertProduct(MVCRepoStore.SqlRepository.Data.Product instance);
+    partial void UpdateProduct(MVCRepoStore.SqlRepository.Data.Product instance);
+    partial void DeleteProduct(MVCRepoStore.SqlRepository.Data.Product instance);
+    partial void InsertProducts_Image(MVCRepoStore.SqlRepository.Data.Products_Image instance);
+    partial void UpdateProducts_Image(MVCRepoStore.SqlRepository.Data.Products_Image instance);
+    partial void DeleteProducts_Image(MVCRepoStore.SqlRepository.Data.Products_Image instance);
     #endregion
 		
 		public DB() : 
@@ -71,19 +93,59 @@ namespace MVCRepoStore.SqlRepository
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Product> Products
-		{
-			get
-			{
-				return this.GetTable<MVCRepoStore.SqlRepository.Data.Product>();
-			}
-		}
-		
 		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Category> Categories
 		{
 			get
 			{
 				return this.GetTable<MVCRepoStore.SqlRepository.Data.Category>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Categories_Image> Categories_Images
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Categories_Image>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Categories_Product> Categories_Products
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Categories_Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.CategoryCultureDetail> CategoryCultureDetails
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.CategoryCultureDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Culture> Cultures
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Culture>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Image> Images
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Image>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.ProductCultureDetail> ProductCultureDetails
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.ProductCultureDetail>();
 			}
 		}
 		
@@ -102,6 +164,22 @@ namespace MVCRepoStore.SqlRepository
 				return this.GetTable<MVCRepoStore.SqlRepository.Data.ProductReview>();
 			}
 		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Product> Products
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MVCRepoStore.SqlRepository.Data.Products_Image> Products_Images
+		{
+			get
+			{
+				return this.GetTable<MVCRepoStore.SqlRepository.Data.Products_Image>();
+			}
+		}
 	}
 }
 namespace MVCRepoStore.SqlRepository.Data
@@ -112,262 +190,7 @@ namespace MVCRepoStore.SqlRepository.Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="Products")]
-	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProductId;
-		
-		private int _CategoryId;
-		
-		private string _ProductName;
-		
-		private decimal _UnitPrice;
-		
-		private decimal _DiscountPercent;
-		
-		private EntitySet<ProductDescription> _ProductDescriptions;
-		
-		private EntitySet<ProductReview> _ProductReviews;
-		
-		private EntityRef<Category> _Category;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
-    partial void OnCategoryIdChanging(int value);
-    partial void OnCategoryIdChanged();
-    partial void OnProductNameChanging(string value);
-    partial void OnProductNameChanged();
-    partial void OnUnitPriceChanging(decimal value);
-    partial void OnUnitPriceChanged();
-    partial void OnDiscountPercentChanging(decimal value);
-    partial void OnDiscountPercentChanged();
-    #endregion
-		
-		public Product()
-		{
-			this._ProductDescriptions = new EntitySet<ProductDescription>(new Action<ProductDescription>(this.attach_ProductDescriptions), new Action<ProductDescription>(this.detach_ProductDescriptions));
-			this._ProductReviews = new EntitySet<ProductReview>(new Action<ProductReview>(this.attach_ProductReviews), new Action<ProductReview>(this.detach_ProductReviews));
-			this._Category = default(EntityRef<Category>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProductId
-		{
-			get
-			{
-				return this._ProductId;
-			}
-			set
-			{
-				if ((this._ProductId != value))
-				{
-					this.OnProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId")]
-		public int CategoryId
-		{
-			get
-			{
-				return this._CategoryId;
-			}
-			set
-			{
-				if ((this._CategoryId != value))
-				{
-					if (this._Category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoryIdChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryId = value;
-					this.SendPropertyChanged("CategoryId");
-					this.OnCategoryIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductName", CanBeNull=false)]
-		public string ProductName
-		{
-			get
-			{
-				return this._ProductName;
-			}
-			set
-			{
-				if ((this._ProductName != value))
-				{
-					this.OnProductNameChanging(value);
-					this.SendPropertyChanging();
-					this._ProductName = value;
-					this.SendPropertyChanged("ProductName");
-					this.OnProductNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitPrice")]
-		public decimal UnitPrice
-		{
-			get
-			{
-				return this._UnitPrice;
-			}
-			set
-			{
-				if ((this._UnitPrice != value))
-				{
-					this.OnUnitPriceChanging(value);
-					this.SendPropertyChanging();
-					this._UnitPrice = value;
-					this.SendPropertyChanged("UnitPrice");
-					this.OnUnitPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountPercent")]
-		public decimal DiscountPercent
-		{
-			get
-			{
-				return this._DiscountPercent;
-			}
-			set
-			{
-				if ((this._DiscountPercent != value))
-				{
-					this.OnDiscountPercentChanging(value);
-					this.SendPropertyChanging();
-					this._DiscountPercent = value;
-					this.SendPropertyChanged("DiscountPercent");
-					this.OnDiscountPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDescription", Storage="_ProductDescriptions", ThisKey="ProductId", OtherKey="ProductId")]
-		public EntitySet<ProductDescription> ProductDescriptions
-		{
-			get
-			{
-				return this._ProductDescriptions;
-			}
-			set
-			{
-				this._ProductDescriptions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductReview", Storage="_ProductReviews", ThisKey="ProductId", OtherKey="ProductId")]
-		public EntitySet<ProductReview> ProductReviews
-		{
-			get
-			{
-				return this._ProductReviews;
-			}
-			set
-			{
-				this._ProductReviews.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Product", Storage="_Category", ThisKey="CategoryId", OtherKey="CategoryId", IsForeignKey=true)]
-		public Category Category
-		{
-			get
-			{
-				return this._Category.Entity;
-			}
-			set
-			{
-				Category previousValue = this._Category.Entity;
-				if (((previousValue != value) 
-							|| (this._Category.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Category.Entity = null;
-						previousValue.Products.Remove(this);
-					}
-					this._Category.Entity = value;
-					if ((value != null))
-					{
-						value.Products.Add(this);
-						this._CategoryId = value.CategoryId;
-					}
-					else
-					{
-						this._CategoryId = default(int);
-					}
-					this.SendPropertyChanged("Category");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ProductDescriptions(ProductDescription entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = this;
-		}
-		
-		private void detach_ProductDescriptions(ProductDescription entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = null;
-		}
-		
-		private void attach_ProductReviews(ProductReview entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = this;
-		}
-		
-		private void detach_ProductReviews(ProductReview entity)
-		{
-			this.SendPropertyChanging();
-			entity.Product = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="Categories")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categories")]
 	public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -375,11 +198,13 @@ namespace MVCRepoStore.SqlRepository.Data
 		
 		private int _CategoryId;
 		
-		private string _CategoryName;
+		private string _Name;
 		
-		private System.Nullable<int> _ParentId;
+		private int _ParentId;
 		
-		private EntitySet<Product> _Products;
+		private EntitySet<Categories_Image> _Categories_Images;
+		
+		private EntitySet<Categories_Product> _Categories_Products;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -387,19 +212,20 @@ namespace MVCRepoStore.SqlRepository.Data
     partial void OnCreated();
     partial void OnCategoryIdChanging(int value);
     partial void OnCategoryIdChanged();
-    partial void OnCategoryNameChanging(string value);
-    partial void OnCategoryNameChanged();
-    partial void OnParentIdChanging(System.Nullable<int> value);
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnParentIdChanging(int value);
     partial void OnParentIdChanged();
     #endregion
 		
 		public Category()
 		{
-			this._Products = new EntitySet<Product>(new Action<Product>(this.attach_Products), new Action<Product>(this.detach_Products));
+			this._Categories_Images = new EntitySet<Categories_Image>(new Action<Categories_Image>(this.attach_Categories_Images), new Action<Categories_Image>(this.detach_Categories_Images));
+			this._Categories_Products = new EntitySet<Categories_Product>(new Action<Categories_Product>(this.attach_Categories_Products), new Action<Categories_Product>(this.detach_Categories_Products));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int CategoryId
 		{
 			get
@@ -419,28 +245,28 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="Name", Storage="_CategoryName", CanBeNull=false)]
-		public string CategoryName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX)")]
+		public string Name
 		{
 			get
 			{
-				return this._CategoryName;
+				return this._Name;
 			}
 			set
 			{
-				if ((this._CategoryName != value))
+				if ((this._Name != value))
 				{
-					this.OnCategoryNameChanging(value);
+					this.OnNameChanging(value);
 					this.SendPropertyChanging();
-					this._CategoryName = value;
-					this.SendPropertyChanged("CategoryName");
-					this.OnCategoryNameChanged();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId")]
-		public System.Nullable<int> ParentId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int NOT NULL")]
+		public int ParentId
 		{
 			get
 			{
@@ -459,16 +285,29 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Product", Storage="_Products", ThisKey="CategoryId", OtherKey="CategoryId")]
-		public EntitySet<Product> Products
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Categories_Image", Storage="_Categories_Images", ThisKey="CategoryId", OtherKey="Category_CategoryId")]
+		public EntitySet<Categories_Image> Categories_Images
 		{
 			get
 			{
-				return this._Products;
+				return this._Categories_Images;
 			}
 			set
 			{
-				this._Products.Assign(value);
+				this._Categories_Images.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Categories_Product", Storage="_Categories_Products", ThisKey="CategoryId", OtherKey="Category_CategoryId")]
+		public EntitySet<Categories_Product> Categories_Products
+		{
+			get
+			{
+				return this._Categories_Products;
+			}
+			set
+			{
+				this._Categories_Products.Assign(value);
 			}
 		}
 		
@@ -492,32 +331,236 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		private void attach_Products(Product entity)
+		private void attach_Categories_Images(Categories_Image entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = this;
 		}
 		
-		private void detach_Products(Product entity)
+		private void detach_Categories_Images(Categories_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = null;
+		}
+		
+		private void attach_Categories_Products(Categories_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.Category = this;
+		}
+		
+		private void detach_Categories_Products(Categories_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.Category = null;
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
-	public partial class ProductDescription : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categories_Images")]
+	public partial class Categories_Image : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ProductDescriptionId;
+		private int _Id;
 		
-		private int _ProductId;
+		private System.Nullable<int> _Category_CategoryId;
 		
-		private string _CultureId;
+		private System.Nullable<int> _Image_ImageId;
 		
-		private string _Description;
+		private EntityRef<Category> _Category;
+		
+		private EntityRef<Image> _Image;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCategory_CategoryIdChanging(System.Nullable<int> value);
+    partial void OnCategory_CategoryIdChanged();
+    partial void OnImage_ImageIdChanging(System.Nullable<int> value);
+    partial void OnImage_ImageIdChanged();
+    #endregion
+		
+		public Categories_Image()
+		{
+			this._Category = default(EntityRef<Category>);
+			this._Image = default(EntityRef<Image>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category_CategoryId", DbType="Int")]
+		public System.Nullable<int> Category_CategoryId
+		{
+			get
+			{
+				return this._Category_CategoryId;
+			}
+			set
+			{
+				if ((this._Category_CategoryId != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategory_CategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._Category_CategoryId = value;
+					this.SendPropertyChanged("Category_CategoryId");
+					this.OnCategory_CategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_ImageId", DbType="Int")]
+		public System.Nullable<int> Image_ImageId
+		{
+			get
+			{
+				return this._Image_ImageId;
+			}
+			set
+			{
+				if ((this._Image_ImageId != value))
+				{
+					if (this._Image.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnImage_ImageIdChanging(value);
+					this.SendPropertyChanging();
+					this._Image_ImageId = value;
+					this.SendPropertyChanged("Image_ImageId");
+					this.OnImage_ImageIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Categories_Image", Storage="_Category", ThisKey="Category_CategoryId", OtherKey="CategoryId", IsForeignKey=true)]
+		public Category Category
+		{
+			get
+			{
+				return this._Category.Entity;
+			}
+			set
+			{
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Categories_Images.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Categories_Images.Add(this);
+						this._Category_CategoryId = value.CategoryId;
+					}
+					else
+					{
+						this._Category_CategoryId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Categories_Image", Storage="_Image", ThisKey="Image_ImageId", OtherKey="ImageId", IsForeignKey=true)]
+		public Image Image
+		{
+			get
+			{
+				return this._Image.Entity;
+			}
+			set
+			{
+				Image previousValue = this._Image.Entity;
+				if (((previousValue != value) 
+							|| (this._Image.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Image.Entity = null;
+						previousValue.Categories_Images.Remove(this);
+					}
+					this._Image.Entity = value;
+					if ((value != null))
+					{
+						value.Categories_Images.Add(this);
+						this._Image_ImageId = value.ImageId;
+					}
+					else
+					{
+						this._Image_ImageId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Image");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Categories_Products")]
+	public partial class Categories_Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Category_CategoryId;
+		
+		private System.Nullable<int> _Product_ProductId;
+		
+		private EntityRef<Category> _Category;
 		
 		private EntityRef<Product> _Product;
 		
@@ -525,107 +568,124 @@ namespace MVCRepoStore.SqlRepository.Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnProductDescriptionIdChanging(int value);
-    partial void OnProductDescriptionIdChanged();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
-    partial void OnCultureIdChanging(string value);
-    partial void OnCultureIdChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCategory_CategoryIdChanging(System.Nullable<int> value);
+    partial void OnCategory_CategoryIdChanged();
+    partial void OnProduct_ProductIdChanging(System.Nullable<int> value);
+    partial void OnProduct_ProductIdChanged();
     #endregion
 		
-		public ProductDescription()
+		public Categories_Product()
 		{
+			this._Category = default(EntityRef<Category>);
 			this._Product = default(EntityRef<Product>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDescriptionId", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProductDescriptionId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
 		{
 			get
 			{
-				return this._ProductDescriptionId;
+				return this._Id;
 			}
 			set
 			{
-				if ((this._ProductDescriptionId != value))
+				if ((this._Id != value))
 				{
-					this.OnProductDescriptionIdChanging(value);
+					this.OnIdChanging(value);
 					this.SendPropertyChanging();
-					this._ProductDescriptionId = value;
-					this.SendPropertyChanged("ProductDescriptionId");
-					this.OnProductDescriptionIdChanged();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId")]
-		public int ProductId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Category_CategoryId", DbType="Int")]
+		public System.Nullable<int> Category_CategoryId
 		{
 			get
 			{
-				return this._ProductId;
+				return this._Category_CategoryId;
 			}
 			set
 			{
-				if ((this._ProductId != value))
+				if ((this._Category_CategoryId != value))
+				{
+					if (this._Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategory_CategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._Category_CategoryId = value;
+					this.SendPropertyChanged("Category_CategoryId");
+					this.OnCategory_CategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_ProductId", DbType="Int")]
+		public System.Nullable<int> Product_ProductId
+		{
+			get
+			{
+				return this._Product_ProductId;
+			}
+			set
+			{
+				if ((this._Product_ProductId != value))
 				{
 					if (this._Product.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnProductIdChanging(value);
+					this.OnProduct_ProductIdChanging(value);
 					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
+					this._Product_ProductId = value;
+					this.SendPropertyChanged("Product_ProductId");
+					this.OnProduct_ProductIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CultureId", CanBeNull=false)]
-		public string CultureId
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Categories_Product", Storage="_Category", ThisKey="Category_CategoryId", OtherKey="CategoryId", IsForeignKey=true)]
+		public Category Category
 		{
 			get
 			{
-				return this._CultureId;
+				return this._Category.Entity;
 			}
 			set
 			{
-				if ((this._CultureId != value))
+				Category previousValue = this._Category.Entity;
+				if (((previousValue != value) 
+							|| (this._Category.HasLoadedOrAssignedValue == false)))
 				{
-					this.OnCultureIdChanging(value);
 					this.SendPropertyChanging();
-					this._CultureId = value;
-					this.SendPropertyChanged("CultureId");
-					this.OnCultureIdChanged();
+					if ((previousValue != null))
+					{
+						this._Category.Entity = null;
+						previousValue.Categories_Products.Remove(this);
+					}
+					this._Category.Entity = value;
+					if ((value != null))
+					{
+						value.Categories_Products.Add(this);
+						this._Category_CategoryId = value.CategoryId;
+					}
+					else
+					{
+						this._Category_CategoryId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Category");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDescription", Storage="_Product", ThisKey="ProductId", OtherKey="ProductId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Categories_Product", Storage="_Product", ThisKey="Product_ProductId", OtherKey="ProductId", IsForeignKey=true)]
 		public Product Product
 		{
 			get
@@ -642,17 +702,17 @@ namespace MVCRepoStore.SqlRepository.Data
 					if ((previousValue != null))
 					{
 						this._Product.Entity = null;
-						previousValue.ProductDescriptions.Remove(this);
+						previousValue.Categories_Products.Remove(this);
 					}
 					this._Product.Entity = value;
 					if ((value != null))
 					{
-						value.ProductDescriptions.Add(this);
-						this._ProductId = value.ProductId;
+						value.Categories_Products.Add(this);
+						this._Product_ProductId = value.ProductId;
 					}
 					else
 					{
-						this._ProductId = default(int);
+						this._Product_ProductId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Product");
 				}
@@ -680,7 +740,1022 @@ namespace MVCRepoStore.SqlRepository.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CategoryCultureDetails")]
+	public partial class CategoryCultureDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CategoryId;
+		
+		private string _CategoryName;
+		
+		private System.Nullable<int> _Culture_CultureId;
+		
+		private EntityRef<Culture> _Culture;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCategoryIdChanging(int value);
+    partial void OnCategoryIdChanged();
+    partial void OnCategoryNameChanging(string value);
+    partial void OnCategoryNameChanged();
+    partial void OnCulture_CultureIdChanging(System.Nullable<int> value);
+    partial void OnCulture_CultureIdChanged();
+    #endregion
+		
+		public CategoryCultureDetail()
+		{
+			this._Culture = default(EntityRef<Culture>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CategoryId
+		{
+			get
+			{
+				return this._CategoryId;
+			}
+			set
+			{
+				if ((this._CategoryId != value))
+				{
+					this.OnCategoryIdChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryId = value;
+					this.SendPropertyChanged("CategoryId");
+					this.OnCategoryIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryName", DbType="NVarChar(MAX)")]
+		public string CategoryName
+		{
+			get
+			{
+				return this._CategoryName;
+			}
+			set
+			{
+				if ((this._CategoryName != value))
+				{
+					this.OnCategoryNameChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryName = value;
+					this.SendPropertyChanged("CategoryName");
+					this.OnCategoryNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Culture_CultureId", DbType="Int")]
+		public System.Nullable<int> Culture_CultureId
+		{
+			get
+			{
+				return this._Culture_CultureId;
+			}
+			set
+			{
+				if ((this._Culture_CultureId != value))
+				{
+					if (this._Culture.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCulture_CultureIdChanging(value);
+					this.SendPropertyChanging();
+					this._Culture_CultureId = value;
+					this.SendPropertyChanged("Culture_CultureId");
+					this.OnCulture_CultureIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_CategoryCultureDetail", Storage="_Culture", ThisKey="Culture_CultureId", OtherKey="CultureId", IsForeignKey=true)]
+		public Culture Culture
+		{
+			get
+			{
+				return this._Culture.Entity;
+			}
+			set
+			{
+				Culture previousValue = this._Culture.Entity;
+				if (((previousValue != value) 
+							|| (this._Culture.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Culture.Entity = null;
+						previousValue.CategoryCultureDetails.Remove(this);
+					}
+					this._Culture.Entity = value;
+					if ((value != null))
+					{
+						value.CategoryCultureDetails.Add(this);
+						this._Culture_CultureId = value.CultureId;
+					}
+					else
+					{
+						this._Culture_CultureId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Culture");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Cultures")]
+	public partial class Culture : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _CultureId;
+		
+		private string _LanguageCode;
+		
+		private string _Locale;
+		
+		private string _DefaultCurrencyCode;
+		
+		private EntitySet<CategoryCultureDetail> _CategoryCultureDetails;
+		
+		private EntitySet<ProductCultureDetail> _ProductCultureDetails;
+		
+		private EntitySet<ProductDescription> _ProductDescriptions;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCultureIdChanging(int value);
+    partial void OnCultureIdChanged();
+    partial void OnLanguageCodeChanging(string value);
+    partial void OnLanguageCodeChanged();
+    partial void OnLocaleChanging(string value);
+    partial void OnLocaleChanged();
+    partial void OnDefaultCurrencyCodeChanging(string value);
+    partial void OnDefaultCurrencyCodeChanged();
+    #endregion
+		
+		public Culture()
+		{
+			this._CategoryCultureDetails = new EntitySet<CategoryCultureDetail>(new Action<CategoryCultureDetail>(this.attach_CategoryCultureDetails), new Action<CategoryCultureDetail>(this.detach_CategoryCultureDetails));
+			this._ProductCultureDetails = new EntitySet<ProductCultureDetail>(new Action<ProductCultureDetail>(this.attach_ProductCultureDetails), new Action<ProductCultureDetail>(this.detach_ProductCultureDetails));
+			this._ProductDescriptions = new EntitySet<ProductDescription>(new Action<ProductDescription>(this.attach_ProductDescriptions), new Action<ProductDescription>(this.detach_ProductDescriptions));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CultureId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int CultureId
+		{
+			get
+			{
+				return this._CultureId;
+			}
+			set
+			{
+				if ((this._CultureId != value))
+				{
+					this.OnCultureIdChanging(value);
+					this.SendPropertyChanging();
+					this._CultureId = value;
+					this.SendPropertyChanged("CultureId");
+					this.OnCultureIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LanguageCode", DbType="NVarChar(MAX)")]
+		public string LanguageCode
+		{
+			get
+			{
+				return this._LanguageCode;
+			}
+			set
+			{
+				if ((this._LanguageCode != value))
+				{
+					this.OnLanguageCodeChanging(value);
+					this.SendPropertyChanging();
+					this._LanguageCode = value;
+					this.SendPropertyChanged("LanguageCode");
+					this.OnLanguageCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Locale", DbType="NVarChar(MAX)")]
+		public string Locale
+		{
+			get
+			{
+				return this._Locale;
+			}
+			set
+			{
+				if ((this._Locale != value))
+				{
+					this.OnLocaleChanging(value);
+					this.SendPropertyChanging();
+					this._Locale = value;
+					this.SendPropertyChanged("Locale");
+					this.OnLocaleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefaultCurrencyCode", DbType="NVarChar(MAX)")]
+		public string DefaultCurrencyCode
+		{
+			get
+			{
+				return this._DefaultCurrencyCode;
+			}
+			set
+			{
+				if ((this._DefaultCurrencyCode != value))
+				{
+					this.OnDefaultCurrencyCodeChanging(value);
+					this.SendPropertyChanging();
+					this._DefaultCurrencyCode = value;
+					this.SendPropertyChanged("DefaultCurrencyCode");
+					this.OnDefaultCurrencyCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_CategoryCultureDetail", Storage="_CategoryCultureDetails", ThisKey="CultureId", OtherKey="Culture_CultureId")]
+		public EntitySet<CategoryCultureDetail> CategoryCultureDetails
+		{
+			get
+			{
+				return this._CategoryCultureDetails;
+			}
+			set
+			{
+				this._CategoryCultureDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_ProductCultureDetail", Storage="_ProductCultureDetails", ThisKey="CultureId", OtherKey="Culture_CultureId")]
+		public EntitySet<ProductCultureDetail> ProductCultureDetails
+		{
+			get
+			{
+				return this._ProductCultureDetails;
+			}
+			set
+			{
+				this._ProductCultureDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_ProductDescription", Storage="_ProductDescriptions", ThisKey="CultureId", OtherKey="Culture_CultureId")]
+		public EntitySet<ProductDescription> ProductDescriptions
+		{
+			get
+			{
+				return this._ProductDescriptions;
+			}
+			set
+			{
+				this._ProductDescriptions.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CategoryCultureDetails(CategoryCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = this;
+		}
+		
+		private void detach_CategoryCultureDetails(CategoryCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = null;
+		}
+		
+		private void attach_ProductCultureDetails(ProductCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = this;
+		}
+		
+		private void detach_ProductCultureDetails(ProductCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = null;
+		}
+		
+		private void attach_ProductDescriptions(ProductDescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = this;
+		}
+		
+		private void detach_ProductDescriptions(ProductDescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Culture = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Images")]
+	public partial class Image : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ImageId;
+		
+		private string _ThumbUrl;
+		
+		private string _FullImageUrl;
+		
+		private EntitySet<Categories_Image> _Categories_Images;
+		
+		private EntitySet<Products_Image> _Products_Images;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnImageIdChanging(int value);
+    partial void OnImageIdChanged();
+    partial void OnThumbUrlChanging(string value);
+    partial void OnThumbUrlChanged();
+    partial void OnFullImageUrlChanging(string value);
+    partial void OnFullImageUrlChanged();
+    #endregion
+		
+		public Image()
+		{
+			this._Categories_Images = new EntitySet<Categories_Image>(new Action<Categories_Image>(this.attach_Categories_Images), new Action<Categories_Image>(this.detach_Categories_Images));
+			this._Products_Images = new EntitySet<Products_Image>(new Action<Products_Image>(this.attach_Products_Images), new Action<Products_Image>(this.detach_Products_Images));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ImageId
+		{
+			get
+			{
+				return this._ImageId;
+			}
+			set
+			{
+				if ((this._ImageId != value))
+				{
+					this.OnImageIdChanging(value);
+					this.SendPropertyChanging();
+					this._ImageId = value;
+					this.SendPropertyChanged("ImageId");
+					this.OnImageIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThumbUrl", DbType="NVarChar(MAX)")]
+		public string ThumbUrl
+		{
+			get
+			{
+				return this._ThumbUrl;
+			}
+			set
+			{
+				if ((this._ThumbUrl != value))
+				{
+					this.OnThumbUrlChanging(value);
+					this.SendPropertyChanging();
+					this._ThumbUrl = value;
+					this.SendPropertyChanged("ThumbUrl");
+					this.OnThumbUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullImageUrl", DbType="NVarChar(MAX)")]
+		public string FullImageUrl
+		{
+			get
+			{
+				return this._FullImageUrl;
+			}
+			set
+			{
+				if ((this._FullImageUrl != value))
+				{
+					this.OnFullImageUrlChanging(value);
+					this.SendPropertyChanging();
+					this._FullImageUrl = value;
+					this.SendPropertyChanged("FullImageUrl");
+					this.OnFullImageUrlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Categories_Image", Storage="_Categories_Images", ThisKey="ImageId", OtherKey="Image_ImageId")]
+		public EntitySet<Categories_Image> Categories_Images
+		{
+			get
+			{
+				return this._Categories_Images;
+			}
+			set
+			{
+				this._Categories_Images.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Products_Image", Storage="_Products_Images", ThisKey="ImageId", OtherKey="Image_ImageId")]
+		public EntitySet<Products_Image> Products_Images
+		{
+			get
+			{
+				return this._Products_Images;
+			}
+			set
+			{
+				this._Products_Images.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Categories_Images(Categories_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = this;
+		}
+		
+		private void detach_Categories_Images(Categories_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = null;
+		}
+		
+		private void attach_Products_Images(Products_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = this;
+		}
+		
+		private void detach_Products_Images(Products_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Image = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductCultureDetails")]
+	public partial class ProductCultureDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductCultureDetailId;
+		
+		private string _Desctiption;
+		
+		private string _ShortDescription;
+		
+		private decimal _UnitPrice;
+		
+		private System.Nullable<int> _Culture_CultureId;
+		
+		private System.Nullable<int> _Product_ProductId;
+		
+		private EntityRef<Culture> _Culture;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductCultureDetailIdChanging(int value);
+    partial void OnProductCultureDetailIdChanged();
+    partial void OnDesctiptionChanging(string value);
+    partial void OnDesctiptionChanged();
+    partial void OnShortDescriptionChanging(string value);
+    partial void OnShortDescriptionChanged();
+    partial void OnUnitPriceChanging(decimal value);
+    partial void OnUnitPriceChanged();
+    partial void OnCulture_CultureIdChanging(System.Nullable<int> value);
+    partial void OnCulture_CultureIdChanged();
+    partial void OnProduct_ProductIdChanging(System.Nullable<int> value);
+    partial void OnProduct_ProductIdChanged();
+    #endregion
+		
+		public ProductCultureDetail()
+		{
+			this._Culture = default(EntityRef<Culture>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductCultureDetailId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductCultureDetailId
+		{
+			get
+			{
+				return this._ProductCultureDetailId;
+			}
+			set
+			{
+				if ((this._ProductCultureDetailId != value))
+				{
+					this.OnProductCultureDetailIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductCultureDetailId = value;
+					this.SendPropertyChanged("ProductCultureDetailId");
+					this.OnProductCultureDetailIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Desctiption", DbType="NVarChar(MAX)")]
+		public string Desctiption
+		{
+			get
+			{
+				return this._Desctiption;
+			}
+			set
+			{
+				if ((this._Desctiption != value))
+				{
+					this.OnDesctiptionChanging(value);
+					this.SendPropertyChanging();
+					this._Desctiption = value;
+					this.SendPropertyChanged("Desctiption");
+					this.OnDesctiptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShortDescription", DbType="NVarChar(MAX)")]
+		public string ShortDescription
+		{
+			get
+			{
+				return this._ShortDescription;
+			}
+			set
+			{
+				if ((this._ShortDescription != value))
+				{
+					this.OnShortDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._ShortDescription = value;
+					this.SendPropertyChanged("ShortDescription");
+					this.OnShortDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UnitPrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal UnitPrice
+		{
+			get
+			{
+				return this._UnitPrice;
+			}
+			set
+			{
+				if ((this._UnitPrice != value))
+				{
+					this.OnUnitPriceChanging(value);
+					this.SendPropertyChanging();
+					this._UnitPrice = value;
+					this.SendPropertyChanged("UnitPrice");
+					this.OnUnitPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Culture_CultureId", DbType="Int")]
+		public System.Nullable<int> Culture_CultureId
+		{
+			get
+			{
+				return this._Culture_CultureId;
+			}
+			set
+			{
+				if ((this._Culture_CultureId != value))
+				{
+					if (this._Culture.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCulture_CultureIdChanging(value);
+					this.SendPropertyChanging();
+					this._Culture_CultureId = value;
+					this.SendPropertyChanged("Culture_CultureId");
+					this.OnCulture_CultureIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_ProductId", DbType="Int")]
+		public System.Nullable<int> Product_ProductId
+		{
+			get
+			{
+				return this._Product_ProductId;
+			}
+			set
+			{
+				if ((this._Product_ProductId != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProduct_ProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._Product_ProductId = value;
+					this.SendPropertyChanged("Product_ProductId");
+					this.OnProduct_ProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_ProductCultureDetail", Storage="_Culture", ThisKey="Culture_CultureId", OtherKey="CultureId", IsForeignKey=true)]
+		public Culture Culture
+		{
+			get
+			{
+				return this._Culture.Entity;
+			}
+			set
+			{
+				Culture previousValue = this._Culture.Entity;
+				if (((previousValue != value) 
+							|| (this._Culture.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Culture.Entity = null;
+						previousValue.ProductCultureDetails.Remove(this);
+					}
+					this._Culture.Entity = value;
+					if ((value != null))
+					{
+						value.ProductCultureDetails.Add(this);
+						this._Culture_CultureId = value.CultureId;
+					}
+					else
+					{
+						this._Culture_CultureId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Culture");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductCultureDetail", Storage="_Product", ThisKey="Product_ProductId", OtherKey="ProductId", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.ProductCultureDetails.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.ProductCultureDetails.Add(this);
+						this._Product_ProductId = value.ProductId;
+					}
+					else
+					{
+						this._Product_ProductId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductDescriptions")]
+	public partial class ProductDescription : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductDescriptionId;
+		
+		private System.Nullable<int> _Product_ProductId;
+		
+		private string _Description;
+		
+		private System.Nullable<int> _Culture_CultureId;
+		
+		private EntityRef<Culture> _Culture;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductDescriptionIdChanging(int value);
+    partial void OnProductDescriptionIdChanged();
+    partial void OnProduct_ProductIdChanging(System.Nullable<int> value);
+    partial void OnProduct_ProductIdChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnCulture_CultureIdChanging(System.Nullable<int> value);
+    partial void OnCulture_CultureIdChanged();
+    #endregion
+		
+		public ProductDescription()
+		{
+			this._Culture = default(EntityRef<Culture>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDescriptionId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductDescriptionId
+		{
+			get
+			{
+				return this._ProductDescriptionId;
+			}
+			set
+			{
+				if ((this._ProductDescriptionId != value))
+				{
+					this.OnProductDescriptionIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductDescriptionId = value;
+					this.SendPropertyChanged("ProductDescriptionId");
+					this.OnProductDescriptionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_ProductId", DbType="Int")]
+		public System.Nullable<int> Product_ProductId
+		{
+			get
+			{
+				return this._Product_ProductId;
+			}
+			set
+			{
+				if ((this._Product_ProductId != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProduct_ProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._Product_ProductId = value;
+					this.SendPropertyChanged("Product_ProductId");
+					this.OnProduct_ProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Culture_CultureId", DbType="Int")]
+		public System.Nullable<int> Culture_CultureId
+		{
+			get
+			{
+				return this._Culture_CultureId;
+			}
+			set
+			{
+				if ((this._Culture_CultureId != value))
+				{
+					if (this._Culture.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCulture_CultureIdChanging(value);
+					this.SendPropertyChanging();
+					this._Culture_CultureId = value;
+					this.SendPropertyChanged("Culture_CultureId");
+					this.OnCulture_CultureIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Culture_ProductDescription", Storage="_Culture", ThisKey="Culture_CultureId", OtherKey="CultureId", IsForeignKey=true)]
+		public Culture Culture
+		{
+			get
+			{
+				return this._Culture.Entity;
+			}
+			set
+			{
+				Culture previousValue = this._Culture.Entity;
+				if (((previousValue != value) 
+							|| (this._Culture.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Culture.Entity = null;
+						previousValue.ProductDescriptions.Remove(this);
+					}
+					this._Culture.Entity = value;
+					if ((value != null))
+					{
+						value.ProductDescriptions.Add(this);
+						this._Culture_CultureId = value.CultureId;
+					}
+					else
+					{
+						this._Culture_CultureId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Culture");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDescription", Storage="_Product", ThisKey="Product_ProductId", OtherKey="ProductId", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.ProductDescriptions.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.ProductDescriptions.Add(this);
+						this._Product_ProductId = value.ProductId;
+					}
+					else
+					{
+						this._Product_ProductId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ProductReviews")]
 	public partial class ProductReview : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -688,13 +1763,15 @@ namespace MVCRepoStore.SqlRepository.Data
 		
 		private int _ProductReviewId;
 		
-		private int _ProductId;
-		
 		private string _Author;
+		
+		private string _Body;
+		
+		private System.DateTime _CreatedOn;
 		
 		private string _Email;
 		
-		private string _Body;
+		private System.Nullable<int> _Product_ProductId;
 		
 		private EntityRef<Product> _Product;
 		
@@ -704,14 +1781,16 @@ namespace MVCRepoStore.SqlRepository.Data
     partial void OnCreated();
     partial void OnProductReviewIdChanging(int value);
     partial void OnProductReviewIdChanged();
-    partial void OnProductIdChanging(int value);
-    partial void OnProductIdChanged();
     partial void OnAuthorChanging(string value);
     partial void OnAuthorChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
     partial void OnBodyChanging(string value);
     partial void OnBodyChanged();
+    partial void OnCreatedOnChanging(System.DateTime value);
+    partial void OnCreatedOnChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnProduct_ProductIdChanging(System.Nullable<int> value);
+    partial void OnProduct_ProductIdChanged();
     #endregion
 		
 		public ProductReview()
@@ -720,7 +1799,7 @@ namespace MVCRepoStore.SqlRepository.Data
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductReviewId", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductReviewId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int ProductReviewId
 		{
 			get
@@ -740,31 +1819,7 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId")]
-		public int ProductId
-		{
-			get
-			{
-				return this._ProductId;
-			}
-			set
-			{
-				if ((this._ProductId != value))
-				{
-					if (this._Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProductId = value;
-					this.SendPropertyChanged("ProductId");
-					this.OnProductIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Author", DbType="NVarChar(MAX)")]
 		public string Author
 		{
 			get
@@ -784,27 +1839,7 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", CanBeNull=false)]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Body", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Body", DbType="NVarChar(MAX)")]
 		public string Body
 		{
 			get
@@ -824,7 +1859,71 @@ namespace MVCRepoStore.SqlRepository.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductReview", Storage="_Product", ThisKey="ProductId", OtherKey="ProductId", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedOn", DbType="DateTime NOT NULL")]
+		public System.DateTime CreatedOn
+		{
+			get
+			{
+				return this._CreatedOn;
+			}
+			set
+			{
+				if ((this._CreatedOn != value))
+				{
+					this.OnCreatedOnChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedOn = value;
+					this.SendPropertyChanged("CreatedOn");
+					this.OnCreatedOnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(MAX)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_ProductId", DbType="Int")]
+		public System.Nullable<int> Product_ProductId
+		{
+			get
+			{
+				return this._Product_ProductId;
+			}
+			set
+			{
+				if ((this._Product_ProductId != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProduct_ProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._Product_ProductId = value;
+					this.SendPropertyChanged("Product_ProductId");
+					this.OnProduct_ProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductReview", Storage="_Product", ThisKey="Product_ProductId", OtherKey="ProductId", IsForeignKey=true)]
 		public Product Product
 		{
 			get
@@ -847,11 +1946,501 @@ namespace MVCRepoStore.SqlRepository.Data
 					if ((value != null))
 					{
 						value.ProductReviews.Add(this);
-						this._ProductId = value.ProductId;
+						this._Product_ProductId = value.ProductId;
 					}
 					else
 					{
-						this._ProductId = default(int);
+						this._Product_ProductId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Product");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products")]
+	public partial class Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductId;
+		
+		private string _ProductName;
+		
+		private decimal _DiscountPercent;
+		
+		private string _ProductCode;
+		
+		private decimal _BaseUnitPrice;
+		
+		private EntitySet<Categories_Product> _Categories_Products;
+		
+		private EntitySet<ProductCultureDetail> _ProductCultureDetails;
+		
+		private EntitySet<ProductDescription> _ProductDescriptions;
+		
+		private EntitySet<ProductReview> _ProductReviews;
+		
+		private EntitySet<Products_Image> _Products_Images;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnProductNameChanging(string value);
+    partial void OnProductNameChanged();
+    partial void OnDiscountPercentChanging(decimal value);
+    partial void OnDiscountPercentChanged();
+    partial void OnProductCodeChanging(string value);
+    partial void OnProductCodeChanged();
+    partial void OnBaseUnitPriceChanging(decimal value);
+    partial void OnBaseUnitPriceChanged();
+    #endregion
+		
+		public Product()
+		{
+			this._Categories_Products = new EntitySet<Categories_Product>(new Action<Categories_Product>(this.attach_Categories_Products), new Action<Categories_Product>(this.detach_Categories_Products));
+			this._ProductCultureDetails = new EntitySet<ProductCultureDetail>(new Action<ProductCultureDetail>(this.attach_ProductCultureDetails), new Action<ProductCultureDetail>(this.detach_ProductCultureDetails));
+			this._ProductDescriptions = new EntitySet<ProductDescription>(new Action<ProductDescription>(this.attach_ProductDescriptions), new Action<ProductDescription>(this.detach_ProductDescriptions));
+			this._ProductReviews = new EntitySet<ProductReview>(new Action<ProductReview>(this.attach_ProductReviews), new Action<ProductReview>(this.detach_ProductReviews));
+			this._Products_Images = new EntitySet<Products_Image>(new Action<Products_Image>(this.attach_Products_Images), new Action<Products_Image>(this.detach_Products_Images));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductName", DbType="NVarChar(MAX)")]
+		public string ProductName
+		{
+			get
+			{
+				return this._ProductName;
+			}
+			set
+			{
+				if ((this._ProductName != value))
+				{
+					this.OnProductNameChanging(value);
+					this.SendPropertyChanging();
+					this._ProductName = value;
+					this.SendPropertyChanged("ProductName");
+					this.OnProductNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountPercent", DbType="Decimal(18,2) NOT NULL")]
+		public decimal DiscountPercent
+		{
+			get
+			{
+				return this._DiscountPercent;
+			}
+			set
+			{
+				if ((this._DiscountPercent != value))
+				{
+					this.OnDiscountPercentChanging(value);
+					this.SendPropertyChanging();
+					this._DiscountPercent = value;
+					this.SendPropertyChanged("DiscountPercent");
+					this.OnDiscountPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductCode", DbType="NVarChar(MAX)")]
+		public string ProductCode
+		{
+			get
+			{
+				return this._ProductCode;
+			}
+			set
+			{
+				if ((this._ProductCode != value))
+				{
+					this.OnProductCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ProductCode = value;
+					this.SendPropertyChanged("ProductCode");
+					this.OnProductCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BaseUnitPrice", DbType="Decimal(18,2) NOT NULL")]
+		public decimal BaseUnitPrice
+		{
+			get
+			{
+				return this._BaseUnitPrice;
+			}
+			set
+			{
+				if ((this._BaseUnitPrice != value))
+				{
+					this.OnBaseUnitPriceChanging(value);
+					this.SendPropertyChanging();
+					this._BaseUnitPrice = value;
+					this.SendPropertyChanged("BaseUnitPrice");
+					this.OnBaseUnitPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Categories_Product", Storage="_Categories_Products", ThisKey="ProductId", OtherKey="Product_ProductId")]
+		public EntitySet<Categories_Product> Categories_Products
+		{
+			get
+			{
+				return this._Categories_Products;
+			}
+			set
+			{
+				this._Categories_Products.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductCultureDetail", Storage="_ProductCultureDetails", ThisKey="ProductId", OtherKey="Product_ProductId")]
+		public EntitySet<ProductCultureDetail> ProductCultureDetails
+		{
+			get
+			{
+				return this._ProductCultureDetails;
+			}
+			set
+			{
+				this._ProductCultureDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductDescription", Storage="_ProductDescriptions", ThisKey="ProductId", OtherKey="Product_ProductId")]
+		public EntitySet<ProductDescription> ProductDescriptions
+		{
+			get
+			{
+				return this._ProductDescriptions;
+			}
+			set
+			{
+				this._ProductDescriptions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_ProductReview", Storage="_ProductReviews", ThisKey="ProductId", OtherKey="Product_ProductId")]
+		public EntitySet<ProductReview> ProductReviews
+		{
+			get
+			{
+				return this._ProductReviews;
+			}
+			set
+			{
+				this._ProductReviews.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Products_Image", Storage="_Products_Images", ThisKey="ProductId", OtherKey="Product_ProductId")]
+		public EntitySet<Products_Image> Products_Images
+		{
+			get
+			{
+				return this._Products_Images;
+			}
+			set
+			{
+				this._Products_Images.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Categories_Products(Categories_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_Categories_Products(Categories_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+		
+		private void attach_ProductCultureDetails(ProductCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_ProductCultureDetails(ProductCultureDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+		
+		private void attach_ProductDescriptions(ProductDescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_ProductDescriptions(ProductDescription entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+		
+		private void attach_ProductReviews(ProductReview entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_ProductReviews(ProductReview entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+		
+		private void attach_Products_Images(Products_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = this;
+		}
+		
+		private void detach_Products_Images(Products_Image entity)
+		{
+			this.SendPropertyChanging();
+			entity.Product = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Products_Images")]
+	public partial class Products_Image : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Image_ImageId;
+		
+		private System.Nullable<int> _Product_ProductId;
+		
+		private EntityRef<Image> _Image;
+		
+		private EntityRef<Product> _Product;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnImage_ImageIdChanging(System.Nullable<int> value);
+    partial void OnImage_ImageIdChanged();
+    partial void OnProduct_ProductIdChanging(System.Nullable<int> value);
+    partial void OnProduct_ProductIdChanged();
+    #endregion
+		
+		public Products_Image()
+		{
+			this._Image = default(EntityRef<Image>);
+			this._Product = default(EntityRef<Product>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image_ImageId", DbType="Int")]
+		public System.Nullable<int> Image_ImageId
+		{
+			get
+			{
+				return this._Image_ImageId;
+			}
+			set
+			{
+				if ((this._Image_ImageId != value))
+				{
+					if (this._Image.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnImage_ImageIdChanging(value);
+					this.SendPropertyChanging();
+					this._Image_ImageId = value;
+					this.SendPropertyChanged("Image_ImageId");
+					this.OnImage_ImageIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Product_ProductId", DbType="Int")]
+		public System.Nullable<int> Product_ProductId
+		{
+			get
+			{
+				return this._Product_ProductId;
+			}
+			set
+			{
+				if ((this._Product_ProductId != value))
+				{
+					if (this._Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProduct_ProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._Product_ProductId = value;
+					this.SendPropertyChanged("Product_ProductId");
+					this.OnProduct_ProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Image_Products_Image", Storage="_Image", ThisKey="Image_ImageId", OtherKey="ImageId", IsForeignKey=true)]
+		public Image Image
+		{
+			get
+			{
+				return this._Image.Entity;
+			}
+			set
+			{
+				Image previousValue = this._Image.Entity;
+				if (((previousValue != value) 
+							|| (this._Image.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Image.Entity = null;
+						previousValue.Products_Images.Remove(this);
+					}
+					this._Image.Entity = value;
+					if ((value != null))
+					{
+						value.Products_Images.Add(this);
+						this._Image_ImageId = value.ImageId;
+					}
+					else
+					{
+						this._Image_ImageId = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Image");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Product_Products_Image", Storage="_Product", ThisKey="Product_ProductId", OtherKey="ProductId", IsForeignKey=true)]
+		public Product Product
+		{
+			get
+			{
+				return this._Product.Entity;
+			}
+			set
+			{
+				Product previousValue = this._Product.Entity;
+				if (((previousValue != value) 
+							|| (this._Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Product.Entity = null;
+						previousValue.Products_Images.Remove(this);
+					}
+					this._Product.Entity = value;
+					if ((value != null))
+					{
+						value.Products_Images.Add(this);
+						this._Product_ProductId = value.ProductId;
+					}
+					else
+					{
+						this._Product_ProductId = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Product");
 				}

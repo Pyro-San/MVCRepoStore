@@ -1,42 +1,114 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database EntityNamespace="MVCRepoStore.SqlRepository.Data" ContextNamespace="MVCRepoStore.SqlRepository" Class="DB" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="aspnet-MVCRepoStore-20141002064334" EntityNamespace="MVCRepoStore.SqlRepository.Data" ContextNamespace="MVCRepoStore.SqlRepository" Class="DB" AccessModifier="Internal" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=C:\Users\James\Projects\MVCRepoStore\MVCRepoStore.Web\App_Data\aspnet-MVCRepoStore-20141002064334.mdf;Initial Catalog=aspnet-MVCRepoStore-20141002064334;Integrated Security=True" SettingsObjectName="MVCRepoStore.Repository.Properties.Settings" SettingsPropertyName="aspnet_MVCRepoStore_20141002064334ConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="Products">
-    <Type Name="Product">
-      <Column Name="ProductId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CategoryId" Type="System.Int32" CanBeNull="false" />
-      <Column Name="ProductName" Type="System.String" CanBeNull="false" />
-      <Column Name="UnitPrice" Type="System.Decimal" CanBeNull="false" />
-      <Column Name="DiscountPercent" Type="System.Decimal" CanBeNull="false" />
-      <Association Name="Product_ProductDescription" Member="ProductDescriptions" ThisKey="ProductId" OtherKey="ProductId" Type="ProductDescription" />
-      <Association Name="Product_ProductReview" Member="ProductReviews" ThisKey="ProductId" OtherKey="ProductId" Type="ProductReview" />
-      <Association Name="Category_Product" Member="Category" ThisKey="CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="Categories">
+  <Table Name="dbo.Categories" Member="Categories">
     <Type Name="Category">
-      <Column Name="CategoryId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Member="CategoryName" Type="System.String" CanBeNull="false" />
-      <Column Name="ParentId" Type="System.Int32" CanBeNull="true" />
-      <Association Name="Category_Product" Member="Products" ThisKey="CategoryId" OtherKey="CategoryId" Type="Product" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Category_Categories_Image" Member="Categories_Images" ThisKey="CategoryId" OtherKey="Category_CategoryId" Type="Categories_Image" />
+      <Association Name="Category_Categories_Product" Member="Categories_Products" ThisKey="CategoryId" OtherKey="Category_CategoryId" Type="Categories_Product" />
     </Type>
   </Table>
-  <Table Name="" Member="ProductDescriptions">
+  <Table Name="dbo.Categories_Images" Member="Categories_Images">
+    <Type Name="Categories_Image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category_CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Image_ImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Category_Categories_Image" Member="Category" ThisKey="Category_CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" />
+      <Association Name="Image_Categories_Image" Member="Image" ThisKey="Image_ImageId" OtherKey="ImageId" Type="Image" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Categories_Products" Member="Categories_Products">
+    <Type Name="Categories_Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category_CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Product_ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Category_Categories_Product" Member="Category" ThisKey="Category_CategoryId" OtherKey="CategoryId" Type="Category" IsForeignKey="true" />
+      <Association Name="Product_Categories_Product" Member="Product" ThisKey="Product_ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CategoryCultureDetails" Member="CategoryCultureDetails">
+    <Type Name="CategoryCultureDetail">
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CategoryName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Culture_CultureId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Culture_CategoryCultureDetail" Member="Culture" ThisKey="Culture_CultureId" OtherKey="CultureId" Type="Culture" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Cultures" Member="Cultures">
+    <Type Name="Culture">
+      <Column Name="CultureId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LanguageCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Locale" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DefaultCurrencyCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Culture_CategoryCultureDetail" Member="CategoryCultureDetails" ThisKey="CultureId" OtherKey="Culture_CultureId" Type="CategoryCultureDetail" />
+      <Association Name="Culture_ProductCultureDetail" Member="ProductCultureDetails" ThisKey="CultureId" OtherKey="Culture_CultureId" Type="ProductCultureDetail" />
+      <Association Name="Culture_ProductDescription" Member="ProductDescriptions" ThisKey="CultureId" OtherKey="Culture_CultureId" Type="ProductDescription" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Images" Member="Images">
+    <Type Name="Image">
+      <Column Name="ImageId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ThumbUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FullImageUrl" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Image_Categories_Image" Member="Categories_Images" ThisKey="ImageId" OtherKey="Image_ImageId" Type="Categories_Image" />
+      <Association Name="Image_Products_Image" Member="Products_Images" ThisKey="ImageId" OtherKey="Image_ImageId" Type="Products_Image" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductCultureDetails" Member="ProductCultureDetails">
+    <Type Name="ProductCultureDetail">
+      <Column Name="ProductCultureDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Desctiption" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ShortDescription" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Culture_CultureId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Product_ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Culture_ProductCultureDetail" Member="Culture" ThisKey="Culture_CultureId" OtherKey="CultureId" Type="Culture" IsForeignKey="true" />
+      <Association Name="Product_ProductCultureDetail" Member="Product" ThisKey="Product_ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductDescriptions" Member="ProductDescriptions">
     <Type Name="ProductDescription">
-      <Column Name="ProductDescriptionId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductId" Type="System.Int32" CanBeNull="false" />
-      <Column Name="CultureId" Type="System.String" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" CanBeNull="false" />
-      <Association Name="Product_ProductDescription" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+      <Column Name="ProductDescriptionId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Product_ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Culture_CultureId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Culture_ProductDescription" Member="Culture" ThisKey="Culture_CultureId" OtherKey="CultureId" Type="Culture" IsForeignKey="true" />
+      <Association Name="Product_ProductDescription" Member="Product" ThisKey="Product_ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="" Member="ProductReviews">
+  <Table Name="dbo.ProductReviews" Member="ProductReviews">
     <Type Name="ProductReview">
-      <Column Name="ProductReviewId" AutoSync="Never" Type="System.Int32" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductId" Type="System.Int32" CanBeNull="false" />
-      <Column Name="Author" Type="System.String" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" CanBeNull="false" />
-      <Column Name="Body" Type="System.String" CanBeNull="false" />
-      <Association Name="Product_ProductReview" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+      <Column Name="ProductReviewId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Author" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Product_ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Product_ProductReview" Member="Product" ThisKey="Product_ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DiscountPercent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BaseUnitPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Product_Categories_Product" Member="Categories_Products" ThisKey="ProductId" OtherKey="Product_ProductId" Type="Categories_Product" />
+      <Association Name="Product_ProductCultureDetail" Member="ProductCultureDetails" ThisKey="ProductId" OtherKey="Product_ProductId" Type="ProductCultureDetail" />
+      <Association Name="Product_ProductDescription" Member="ProductDescriptions" ThisKey="ProductId" OtherKey="Product_ProductId" Type="ProductDescription" />
+      <Association Name="Product_ProductReview" Member="ProductReviews" ThisKey="ProductId" OtherKey="Product_ProductId" Type="ProductReview" />
+      <Association Name="Product_Products_Image" Member="Products_Images" ThisKey="ProductId" OtherKey="Product_ProductId" Type="Products_Image" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products_Images" Member="Products_Images">
+    <Type Name="Products_Image">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Image_ImageId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Product_ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Image_Products_Image" Member="Image" ThisKey="Image_ImageId" OtherKey="ImageId" Type="Image" IsForeignKey="true" />
+      <Association Name="Product_Products_Image" Member="Product" ThisKey="Product_ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
